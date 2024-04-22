@@ -26,6 +26,5 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  height: calc(100% - 382px);
 }
 </style>

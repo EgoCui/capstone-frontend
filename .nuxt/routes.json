@@ -1,0 +1,38 @@
+[
+  {
+    "name": "aboutus",
+    "path": "/aboutus",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/aboutus/index.vue",
+    "chunkName": "pages/aboutus/index"
+  },
+  {
+    "name": "previous",
+    "path": "/previous",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/previous/index.vue",
+    "chunkName": "pages/previous/index"
+  },
+  {
+    "name": "share",
+    "path": "/share",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/share/index.vue",
+    "chunkName": "pages/share/index"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/index.vue",
+    "chunkName": "pages/index"
+  },
+  {
+    "name": "previous-id",
+    "path": "/previous/:id",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/previous/_id.vue",
+    "chunkName": "pages/previous/_id"
+  },
+  {
+    "name": "share-id",
+    "path": "/share/:id",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/share/_id.vue",
+    "chunkName": "pages/share/_id"
+  }
+]

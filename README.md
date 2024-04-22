@@ -21,5 +21,6 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+https://www.genesiantheatre.com.au/index.php?mode=now
 
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

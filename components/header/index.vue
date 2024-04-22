@@ -69,8 +69,12 @@ export default {
       navBarList: [
         { nav: "home", link: "/", children: [] },
         { nav: "previous", link: "/previous", children: [] },
-        { nav: "share", link: "/share", children: [] },
-        { nav: "about us", link: "/aboutus", children: [] },
+        { nav: "blog", link: "/blog", children: [] },
+        { nav: "fundraising", link: "/fundraising", children: [] },
+        { nav: "about", link: "/about", children: [] },
+        { nav: "work", link: "/work", children: [] },
+        { nav: "training", link: "/training", children: [] },
+        { nav: "news", link: "/news", children: [] },
       ],
     };
   },
@@ -276,4 +280,3 @@ export default {
   }
 }
 </style>
-

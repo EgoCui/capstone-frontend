@@ -94,7 +94,7 @@ export default {
     };
   },
   async mounted() {
-    // this.onSubmit()
+    // this.onSubmit();
     const res = await this.$axios.get(`/api/show/fSearch`, {
       params: {
         kw: this.form.name,
@@ -121,7 +121,7 @@ export default {
       // Reset our form values
       this.form.year = "";
       this.form.name = "";
-      this.onSubmit(evt);
+      // this.onSubmit(evt);
     },
   },
 };
