@@ -344,7 +344,7 @@ export default {
         // 发起 POST 请求到后端 API
         this.formData.email = document.getElementById('email').value;
         this.formData.subject = document.getElementById('name').value+
-            ": "+document.getElementById('preText').value;
+            ":  "+document.getElementById('preText').value;
         this.formData.content = document.getElementById('message').value;
         const response = await axios.post('http://localhost:8090/send-mail', this.formData, {
           headers: {
