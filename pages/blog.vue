@@ -11,7 +11,7 @@
           v-model="value"
           @context="onContext"
           locale="en-US"
-          width="470px"
+          width="100px"
         ></b-calendar>
       </b-modal>
       <div style="margin-top: 20px">

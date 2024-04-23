@@ -4,9 +4,17 @@ Fundraising
     <div class="container">
       <div class="t-con">
         <h3>Building a new home for the Genesian</h3>
-        <p>Paragraph section - body text</p>
-        <p style="text-align: right"><b-button>Donate</b-button></p>
+        <br>
+        <h5>We need your generous support</h5>
+
+<p>In order to make our vision a reality, we cordially invite you to join us in supporting our projects by making a donation. Every donation you make is vital and will go directly to the construction of the new theatre, which will not only be a venue for performances, but also a centre for cultural exchange and artistic cultivation. We firmly believe that with your help, we can bring more artistic enjoyment and educational resources to the community.</p>
+<p style="text-align: right;"> <!-- Add CSS here -->
+          <a href="https://donorbox.org/gtc-fundraising-campaign" target="_blank">
+            <b-button>Donate</b-button>
+          </a>
+        </p>
       </div>
+      <hr>
       <div class="t-con">
         <h3>Fundraising events</h3>
         <img
