@@ -1,9 +1,33 @@
 [
   {
-    "name": "aboutus",
-    "path": "/aboutus",
-    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/aboutus/index.vue",
-    "chunkName": "pages/aboutus/index"
+    "name": "about",
+    "path": "/about",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/about.vue",
+    "chunkName": "pages/about"
+  },
+  {
+    "name": "blog",
+    "path": "/blog",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/blog.vue",
+    "chunkName": "pages/blog"
+  },
+  {
+    "name": "fundraising",
+    "path": "/fundraising",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/fundraising.vue",
+    "chunkName": "pages/fundraising"
+  },
+  {
+    "name": "news",
+    "path": "/news",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/news.vue",
+    "chunkName": "pages/news"
+  },
+  {
+    "name": "pastProduction",
+    "path": "/pastProduction",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/pastProduction.vue",
+    "chunkName": "pages/pastProduction"
   },
   {
     "name": "previous",
@@ -16,6 +40,18 @@
     "path": "/share",
     "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/share/index.vue",
     "chunkName": "pages/share/index"
+  },
+  {
+    "name": "training",
+    "path": "/training",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/training/index.vue",
+    "chunkName": "pages/training/index"
+  },
+  {
+    "name": "work",
+    "path": "/work",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/work.vue",
+    "chunkName": "pages/work"
   },
   {
     "name": "index",

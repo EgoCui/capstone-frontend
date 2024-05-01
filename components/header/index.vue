@@ -55,7 +55,49 @@
           </b-navbar-nav>
         </b-collapse>
       </div>
+      <!-- <b-nav-item @click="modalShow = !modalShow"
+        >Login</b-nav-item
+      > -->
+      <b-nav-item v-if="!token" @click="modalShow = !modalShow"
+        >Login</b-nav-item
+      >
+      <b-nav-item-dropdown right v-else>
+        <!-- Using 'button-content' slot -->
+        <template #button-content>
+          <em>{{ token.username }}</em>
+        </template>
+        <!-- <b-dropdown-item>Sign Out</b-dropdown-item> -->
+      </b-nav-item-dropdown>
     </b-navbar>
+    <b-modal v-model="modalShow" centered title="Login">
+      <b-form @submit="login" @reset="resetForm">
+        <b-form-group label="Username:" label-for="username">
+          <b-form-input
+            id="username"
+            v-model="username"
+            type="text"
+            required
+            placeholder="Enter your username"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group label="Password:" label-for="password">
+          <b-form-input
+            id="password"
+            v-model="password"
+            type="password"
+            required
+            placeholder="Enter your password"
+          ></b-form-input>
+        </b-form-group>
+        <p style="text-align: center">
+          <b-button type="submit" block variant="primary">Login</b-button>
+          <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
+        </p>
+      </b-form>
+      <template v-slot:modal-footer>
+        <div class="w-100"></div>
+      </template>
+    </b-modal>
   </header>
 </template>
 
@@ -66,6 +108,9 @@ export default {
       showCollaps: false,
       showNavbarBg: false,
       showDrop: false,
+      modalShow: false,
+      username: "",
+      password: "",
       navBarList: [
         { nav: "home", link: "/", children: [] },
         { nav: "previous", link: "/previous", children: [] },
@@ -86,6 +131,12 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.handleWindowScroll);
+  },
+  computed: {
+    token() {
+      // const token = nuxtStorage.localStorage.localStorage.getData("token");
+      return this.$cookies.get("oauth");
+    },
   },
   methods: {
     // 导航栏点击事件
@@ -118,6 +169,26 @@ export default {
     getHeaderHeight() {
       const headerHeight = this.$refs.header.clientHeight;
       this.$store.commit("setHeaderHeight", headerHeight);
+    },
+    async login(evt) {
+      evt.preventDefault();
+      // Here you can add your login logic
+      const res = await this.$axios.post(`/api/user/login`, {
+        email: this.username,
+        pwd: this.password,
+      });
+      console.log(res.data.data);
+      if (res) {
+        this.$bvToast.toast(res.data.msg, {
+          title: "提交结果",
+          variant: "info",
+        });
+      }
+      this.$cookies.set("oauth", res.data.data);
+    },
+    resetForm() {
+      this.username = "";
+      this.password = "";
     },
   },
 };

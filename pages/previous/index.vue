@@ -30,8 +30,46 @@
           <!-- `data.value` is the value after formatted by the Formatter -->
           <a :href="`/previous/${data.item.pid}`">{{ data.value }}</a>
         </template>
+        <template #cell(actions)="row">
+          <b-button
+            size="sm"
+            @click="info(row.item, row.index, $event.target)"
+            class="mr-1"
+          >
+            Edit
+          </b-button>
+        </template>
       </b-table>
     </div>
+    <b-modal v-model="editModal" centered title="Edit">
+      <b-form @submit="onSubmit1">
+        <b-form-group label="Pname:" label-for="pname">
+          <b-form-input
+            id="pname"
+            v-model="form.pname"
+            type="text"
+            required
+            placeholder="Enter your pname"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group label="Subtitle:" label-for="subtitle">
+          <b-form-input
+            id="subtitle"
+            v-model="form.subtitle"
+            type="text"
+            required
+            placeholder="Enter your subtitle"
+          ></b-form-input>
+        </b-form-group>
+        <p style="text-align: center">
+          <b-button type="submit" block variant="primary">Submit</b-button>
+          <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
+        </p>
+      </b-form>
+      <template v-slot:modal-footer>
+        <div class="w-100"></div>
+      </template>
+    </b-modal>
   </my-slot>
 </template>
 
@@ -43,7 +81,12 @@ export default {
   },
   data() {
     return {
-      fields: [{ key: "pname", label: "pname" }, "subtitle", "startdate"],
+      fields: [
+        { key: "pname", label: "pname" },
+        "subtitle",
+        "startdate",
+        { key: "actions", label: "actions" },
+      ],
       items: [
         {
           pid: 1,
@@ -83,7 +126,10 @@ export default {
       form: {
         year: "",
         name: "",
+        pname: "",
+        subtitle: "",
       },
+      editModal: false,
       foods: [
         { text: "Select One", value: null },
         "Carrots",
@@ -91,6 +137,7 @@ export default {
         "Tomatoes",
         "Corn",
       ],
+      active: {},
     };
   },
   async mounted() {
@@ -102,6 +149,12 @@ export default {
       },
     });
     this.items = res.data.data;
+  },
+  computed: {
+    token() {
+      // const token = nuxtStorage.localStorage.localStorage.getData("token");
+      return this.$cookies.get("oauth");
+    },
   },
   methods: {
     async onSubmit(evt) {
@@ -122,6 +175,33 @@ export default {
       this.form.year = "";
       this.form.name = "";
       // this.onSubmit(evt);
+    },
+    async onSubmit1(evt) {
+      evt.preventDefault();
+      console.log(this.form);
+      // const res = await this.$axios.post(`/api/send-mail`, {
+      //   email: this.form.email,
+      //   subject: this.form.subject,
+      //   content: this.form.message,
+      // });
+      // console.log(res);
+      // if (res) {
+      //   this.$bvToast.toast(res.data, {
+      //     title: "提交结果",
+      //     variant: "info",
+      //   });
+      // }
+    },
+    info(item, index, button) {
+      this.active = item;
+      this.editModal = !this.editModal;
+      (this.form = {
+        year: "",
+        name: "",
+        pname: "",
+        subtitle: "",
+      }),
+        console.log(item, index, button);
     },
   },
 };
