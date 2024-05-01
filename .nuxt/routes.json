@@ -1,38 +1,86 @@
 [
   {
-    "name": "aboutus",
-    "path": "/aboutus",
-    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/aboutus/index.vue",
-    "chunkName": "pages/aboutus/index"
+    "name": "about",
+    "path": "/about",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/about.vue",
+    "chunkName": "pages/about",
+    "_name": "_5f449750"
+  },
+  {
+    "name": "blog",
+    "path": "/blog",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/blog.vue",
+    "chunkName": "pages/blog",
+    "_name": "_64ba5fa2"
+  },
+  {
+    "name": "fundraising",
+    "path": "/fundraising",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/fundraising.vue",
+    "chunkName": "pages/fundraising",
+    "_name": "_03463347"
+  },
+  {
+    "name": "news",
+    "path": "/news",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/news.vue",
+    "chunkName": "pages/news",
+    "_name": "_48352ae0"
+  },
+  {
+    "name": "pastProduction",
+    "path": "/pastProduction",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/pastProduction.vue",
+    "chunkName": "pages/pastProduction",
+    "_name": "_37dc6838"
   },
   {
     "name": "previous",
     "path": "/previous",
     "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/previous/index.vue",
-    "chunkName": "pages/previous/index"
+    "chunkName": "pages/previous/index",
+    "_name": "_40ccba07"
   },
   {
     "name": "share",
     "path": "/share",
     "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/share/index.vue",
-    "chunkName": "pages/share/index"
+    "chunkName": "pages/share/index",
+    "_name": "_05f0cfa5"
+  },
+  {
+    "name": "training",
+    "path": "/training",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/training/index.vue",
+    "chunkName": "pages/training/index",
+    "_name": "_43516fac"
+  },
+  {
+    "name": "work",
+    "path": "/work",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/work.vue",
+    "chunkName": "pages/work",
+    "_name": "_11b5cfc4"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_7efc7215"
   },
   {
     "name": "previous-id",
     "path": "/previous/:id",
     "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/previous/_id.vue",
-    "chunkName": "pages/previous/_id"
+    "chunkName": "pages/previous/_id",
+    "_name": "_9b00dba2"
   },
   {
     "name": "share-id",
     "path": "/share/:id",
     "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/share/_id.vue",
-    "chunkName": "pages/share/_id"
+    "chunkName": "pages/share/_id",
+    "_name": "_4648774d"
   }
 ]

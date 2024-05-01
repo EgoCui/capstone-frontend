@@ -38,6 +38,14 @@
                   Synopsis of show taken from first paragraph of post with a
                   click more/expand option
                 </b-card-text>
+
+                <b-button
+                  variant="outline-primary"
+                  v-if="token?.roles == 1"
+                  @click="editModal = !editModal"
+                  >Edit</b-button
+                >
+
                 <b-button href="#" variant="primary">Book Now</b-button>
               </b-card-body>
             </b-col>
@@ -45,6 +53,44 @@
         </b-card>
       </div>
     </div>
+    <b-modal v-model="editModal" centered title="Edit">
+      <b-form @submit="onSubmit1">
+        <b-form-group label="Title:" label-for="title">
+          <b-form-input
+            id="title"
+            v-model="form.title"
+            type="text"
+            required
+            placeholder="Enter your title"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group label="image:" label-for="image">
+          <b-form-file
+            id="image"
+            v-model="form.image"
+            accept="image/*"
+          ></b-form-file>
+        </b-form-group>
+        <b-form-group label="Blog:" label-for="blog">
+          <b-form-textarea
+            id="blog"
+            v-model="form.blog"
+            type=""
+            required
+            rows="3"
+            max-rows="6"
+            placeholder="Enter your blog"
+          ></b-form-textarea>
+        </b-form-group>
+        <p style="text-align: center">
+          <b-button type="submit" block variant="primary">Submit</b-button>
+          <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
+        </p>
+      </b-form>
+      <template v-slot:modal-footer>
+        <div class="w-100"></div>
+      </template>
+    </b-modal>
   </my-slot>
 </template>
 
@@ -57,6 +103,7 @@ export default {
   data() {
     return {
       modalShow: false,
+      editModal: false,
       value: "",
       context: null,
       items: [
@@ -68,6 +115,9 @@ export default {
       form: {
         year: "",
         name: "",
+        title: "",
+        blog: "",
+        image: "",
       },
       foods: [
         { text: "Select One", value: null },
@@ -77,6 +127,12 @@ export default {
         "Corn",
       ],
     };
+  },
+  computed: {
+    token() {
+      // const token = nuxtStorage.localStorage.localStorage.getData("token");
+      return this.$store.state.oauth;
+    },
   },
   methods: {
     onContext(ctx) {
@@ -91,6 +147,22 @@ export default {
       // Reset our form values
       this.form.year = "";
       this.form.name = "";
+    },
+    async onSubmit1(evt) {
+      evt.preventDefault();
+      console.log(this.form);
+      // const res = await this.$axios.post(`/api/send-mail`, {
+      //   email: this.form.email,
+      //   subject: this.form.subject,
+      //   content: this.form.message,
+      // });
+      // console.log(res);
+      // if (res) {
+      //   this.$bvToast.toast(res.data, {
+      //     title: "提交结果",
+      //     variant: "info",
+      //   });
+      // }
     },
   },
 };

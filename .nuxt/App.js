@@ -6,9 +6,9 @@ import NuxtError from './components/nuxt-error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '../node_modules/.store/bootstrap@4.6.2/node_modules/bootstrap/dist/css/bootstrap.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
-import '../node_modules/.store/bootstrap-vue@2.23.1/node_modules/bootstrap-vue/dist/bootstrap-vue.css'
+import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
 
 import '../static/css/animate.css'
 

@@ -62,13 +62,14 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
-    '@nuxtjs/proxy',
+    "@nuxtjs/proxy",
     // Doc: https://bootstrap-vue.js.org
     // 'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
+    "cookie-universal-nuxt",
   ],
   /*
    ** Axios module configuration
@@ -85,14 +86,14 @@ module.exports = {
     resourceHints: false,
   },
   proxy: {
-    '/api': {
-      target: 'http://localhost:8090/',
+    "/api": {
+      target: "http://localhost:8090/",
       pathRewrite: {
         "^/api": "",
       },
       secure: false,
       changeOrigin: true,
-    }
+    },
   },
   build: {
     /*

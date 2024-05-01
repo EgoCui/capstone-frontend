@@ -4,17 +4,37 @@ Fundraising
     <div class="container">
       <div class="t-con">
         <h3>Building a new home for the Genesian</h3>
-        <br>
+        <br />
         <h5>We need your generous support</h5>
 
-<p>In order to make our vision a reality, we cordially invite you to join us in supporting our projects by making a donation. Every donation you make is vital and will go directly to the construction of the new theatre, which will not only be a venue for performances, but also a centre for cultural exchange and artistic cultivation. We firmly believe that with your help, we can bring more artistic enjoyment and educational resources to the community.</p>
-<p style="text-align: right;"> <!-- Add CSS here -->
-          <a href="https://donorbox.org/gtc-fundraising-campaign" target="_blank">
+        <p>
+          In order to make our vision a reality, we cordially invite you to join
+          us in supporting our projects by making a donation. Every donation you
+          make is vital and will go directly to the construction of the new
+          theatre, which will not only be a venue for performances, but also a
+          centre for cultural exchange and artistic cultivation. We firmly
+          believe that with your help, we can bring more artistic enjoyment and
+          educational resources to the community.
+        </p>
+        <p style="text-align: right">
+          <!-- Add CSS here -->
+
+          <b-button
+            variant="outline-primary"
+            v-if="token?.roles == 1"
+            @click="editModal = !editModal"
+            >Edit</b-button
+          >
+
+          <a
+            href="https://donorbox.org/gtc-fundraising-campaign"
+            target="_blank"
+          >
             <b-button>Donate</b-button>
           </a>
         </p>
       </div>
-      <hr>
+      <hr />
       <div class="t-con">
         <h3>Fundraising events</h3>
         <img
@@ -70,6 +90,44 @@ Fundraising
       </div>
       <b-button block variant="primary">Subscribe for updates</b-button>
     </div>
+    <b-modal v-model="editModal" centered title="Edit">
+      <b-form @submit="onSubmit1">
+        <b-form-group label="Title:" label-for="title">
+          <b-form-input
+            id="title"
+            v-model="form.title"
+            type="text"
+            required
+            placeholder="Enter your title"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group label="image:" label-for="image">
+          <b-form-file
+            id="image"
+            v-model="form.image"
+            accept="image/*"
+          ></b-form-file>
+        </b-form-group>
+        <b-form-group label="Blog:" label-for="blog">
+          <b-form-textarea
+            id="blog"
+            v-model="form.blog"
+            type=""
+            required
+            rows="3"
+            max-rows="6"
+            placeholder="Enter your blog"
+          ></b-form-textarea>
+        </b-form-group>
+        <p style="text-align: center">
+          <b-button type="submit" block variant="primary">Submit</b-button>
+          <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
+        </p>
+      </b-form>
+      <template v-slot:modal-footer>
+        <div class="w-100"></div>
+      </template>
+    </b-modal>
   </my-slot>
 </template>
 
@@ -80,9 +138,39 @@ export default {
     MySlot,
   },
   data() {
-    return {};
+    return {
+      editModal: false,
+      form: {
+        title: "",
+        blog: "",
+        image: "",
+      },
+    };
   },
-  methods: {},
+  computed: {
+    token() {
+      // const token = nuxtStorage.localStorage.localStorage.getData("token");
+      return this.$store.state.oauth;
+    },
+  },
+  methods: {
+    async onSubmit1(evt) {
+      evt.preventDefault();
+      console.log(this.form);
+      // const res = await this.$axios.post(`/api/send-mail`, {
+      //   email: this.form.email,
+      //   subject: this.form.subject,
+      //   content: this.form.message,
+      // });
+      // console.log(res);
+      // if (res) {
+      //   this.$bvToast.toast(res.data, {
+      //     title: "提交结果",
+      //     variant: "info",
+      //   });
+      // }
+    },
+  },
 };
 </script>
 

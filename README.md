@@ -23,4 +23,6 @@ $ npm run generate
 
 https://www.genesiantheatre.com.au/index.php?mode=now
 
+https://github.com/Prom1seU123/GenesianTheatreCompanyWeb
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

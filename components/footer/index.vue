@@ -1,7 +1,7 @@
 <template>
   <footer class="text-center py-2">
     <a href="https://beian.miit.gov.cn" target="_blank"
-      >Copyright© 2020 xxxxxxx-x</a
+      >Copyright © 2007-2023, The Genesian Theatre Company Inc. Site design by agendi Webmaster</a
     >
   </footer>
 </template>

@@ -9,10 +9,11 @@
                 >contact us</b-button
               >
             </dt>
-            <dd class="text-justify">xxxxxxxxxxxx。</dd>
-            <dd>address: xxxxxxxxxxxxxxxx</dd>
-            <dd>phone： xxxxxxxxxxxx</dd>
-            <dd>email：xxxxxxxxxxxxx.com</dd>
+            <dd class="text-justify"></dd>
+            <dd>Street Address: 420 Kent St, Sydney NSW 2000</dd>
+            <dd>Postal Address: PO Box 1988, Sydney NSW 2001</dd>
+            <dd>ABN 733 0987 4859</dd>
+            
           </dl>
 
           <b-modal v-model="modalShow" centered title="contact us">
@@ -72,7 +73,7 @@
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </b-col>
-        <b-col lg="4" sm="7" xs="7" md="8" class="wow slideInRight">
+        <!-- <b-col lg="4" sm="7" xs="7" md="8" class="wow slideInRight">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.8912195377397!2d151.17041551289088!3d-33.866694218840856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12afc5980ed26f%3A0x2b7571f3fc43888d!2sSt%20Joseph&#39;s%20Catholic%20Church!5e0!3m2!1szh-CN!2shk!4v1712808109697!5m2!1szh-CN!2shk"
             width="100%"
@@ -82,15 +83,13 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
-        </b-col>
+        </b-col> -->
       </b-row>
     </div>
   </section>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data() {
     return {
@@ -100,63 +99,59 @@ export default {
         message: "",
         selected: null,
       },
-      formData: {
-        email: '',
-        subject: '',
-        content: ''
-      },
       modalShow: false,
 
       options: [
-        // { value: null, text: "Please select an option" },
-        { value: "Membership", text: "Contact for Membership" },
-        { value: "Front desk", text: "Contact our front desk" },
-        // { value: { C: "3PO" }, text: "This is an option with object value" },
-        // { value: "d", text: "This one is disabled", disabled: true },
+        { value: null, text: "Please select an option" },
+        { value: "a", text: "This is First option" },
+        { value: "b", text: "Selected Option" },
+        { value: { C: "3PO" }, text: "This is an option with object value" },
+        { value: "d", text: "This one is disabled", disabled: true },
       ],
     };
   },
   methods: {
     async onSubmit(evt) {
       evt.preventDefault();
-      try {
-        // const phoneReg = /^1[3456789]\d{9}$/;
-        // const emailReg =
-        //   /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
-        // if (!phoneReg.test(this.form.phone) && !emailReg.test(this.form.phone)) {
-        //   this.$bvToast.toast(`提交失败，请输入正确的手机号或邮箱号`, {
-        //     title: "提交结果",
-        //     variant: "danger",
-        //     autoHideDelay: 5000,
-        //   });
-        //   return;
-        // }
-        // const res = await this.$axios.post(`/sendmail`, {
-        //   type: "留言",
-        //   html: `
-        //     <p><strong>发信人姓名：</strong></p>
-        //     <p>${this.form.name}</p>
-        //     <p><strong>发信人联系方式：</strong></p>
-        //     <p>${this.form.phone}</p>
-        //     <p><strong>发信人留言：</strong></p>
-        //     <p>${this.form.message}</p>
-        //   `,
-        // });
-        this.formData.email = this.form.phone;
-        this.formData.subject = this.form.selected;
-        this.formData.content = this.form.message;
-        const response = await axios.post('http://localhost:8090/send-mail', this.formData, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
+      const phoneReg = /^1[3456789]\d{9}$/;
+      const emailReg =
+        /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
+      if (!phoneReg.test(this.form.phone) && !emailReg.test(this.form.phone)) {
+        this.$bvToast.toast(`提交失败，请输入正确的手机号或邮箱号`, {
+          title: "提交结果",
+          variant: "danger",
+          autoHideDelay: 5000,
         });
-        // 处理响应
-        console.log(response.data); // 可根据需要处理数据
-        console.log("Sending data:", this.formData);
-        alert('Email sent successfully!');
-      } catch (error) {
-        console.error('Mail send failed:', error);
-        alert('Mail send failed!');
+        return;
+      }
+      const res = await this.$axios.post(`/sendmail`, {
+        type: "留言",
+        html: `
+          <p><strong>发信人姓名：</strong></p>
+          <p>${this.form.name}</p>
+          <p><strong>发信人联系方式：</strong></p>
+          <p>${this.form.phone}</p>
+          <p><strong>发信人留言：</strong></p>
+          <p>${this.form.message}</p>
+        `,
+      });
+      if (res.data.error_code === 200) {
+        this.form = {
+          name: "",
+          phone: "",
+          message: "",
+        };
+        this.$bvToast.toast(`提交成功，我们将尽快与您取得联系！`, {
+          title: "提交结果",
+          variant: "success",
+          autoHideDelay: 5000,
+        });
+      } else {
+        this.$bvToast.toast(`提交失败，请稍后重试！`, {
+          title: "提交结果",
+          variant: "danger",
+          autoHideDelay: 5000,
+        });
       }
     },
   },
