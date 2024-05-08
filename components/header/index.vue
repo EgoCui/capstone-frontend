@@ -120,6 +120,7 @@ export default {
         { nav: "work", link: "/work", children: [] },
         { nav: "training", link: "/training", children: [] },
         { nav: "news", link: "/news", children: [] },
+        { nav: "manager", link: "/manager", children: [] },
       ],
     };
   },
