@@ -21,6 +21,13 @@
     "_name": "_03463347"
   },
   {
+    "name": "manager",
+    "path": "/manager",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/manager.vue",
+    "chunkName": "pages/manager",
+    "_name": "_ba3f96a0"
+  },
+  {
     "name": "news",
     "path": "/news",
     "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/news.vue",
@@ -54,6 +61,13 @@
     "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/training/index.vue",
     "chunkName": "pages/training/index",
     "_name": "_43516fac"
+  },
+  {
+    "name": "user",
+    "path": "/user",
+    "component": "/Users/ego/Desktop/capstone/capstone-frontend/pages/user.vue",
+    "chunkName": "pages/user",
+    "_name": "_35a16050"
   },
   {
     "name": "work",

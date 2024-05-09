@@ -7,11 +7,13 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _5f449750 = () => interopDefault(import('../pages/about.vue' /* webpackChunkName: "pages/about" */))
 const _64ba5fa2 = () => interopDefault(import('../pages/blog.vue' /* webpackChunkName: "pages/blog" */))
 const _03463347 = () => interopDefault(import('../pages/fundraising.vue' /* webpackChunkName: "pages/fundraising" */))
+const _ba3f96a0 = () => interopDefault(import('../pages/manager.vue' /* webpackChunkName: "pages/manager" */))
 const _48352ae0 = () => interopDefault(import('../pages/news.vue' /* webpackChunkName: "pages/news" */))
 const _37dc6838 = () => interopDefault(import('../pages/pastProduction.vue' /* webpackChunkName: "pages/pastProduction" */))
 const _40ccba07 = () => interopDefault(import('../pages/previous/index.vue' /* webpackChunkName: "pages/previous/index" */))
 const _05f0cfa5 = () => interopDefault(import('../pages/share/index.vue' /* webpackChunkName: "pages/share/index" */))
 const _43516fac = () => interopDefault(import('../pages/training/index.vue' /* webpackChunkName: "pages/training/index" */))
+const _35a16050 = () => interopDefault(import('../pages/user.vue' /* webpackChunkName: "pages/user" */))
 const _11b5cfc4 = () => interopDefault(import('../pages/work.vue' /* webpackChunkName: "pages/work" */))
 const _7efc7215 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _9b00dba2 = () => interopDefault(import('../pages/previous/_id.vue' /* webpackChunkName: "pages/previous/_id" */))
@@ -41,6 +43,10 @@ export const routerOptions = {
     component: _03463347,
     name: "fundraising"
   }, {
+    path: "/manager",
+    component: _ba3f96a0,
+    name: "manager"
+  }, {
     path: "/news",
     component: _48352ae0,
     name: "news"
@@ -60,6 +66,10 @@ export const routerOptions = {
     path: "/training",
     component: _43516fac,
     name: "training"
+  }, {
+    path: "/user",
+    component: _35a16050,
+    name: "user"
   }, {
     path: "/work",
     component: _11b5cfc4,
