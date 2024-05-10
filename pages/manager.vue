@@ -198,40 +198,6 @@ export default {
     async submitForm() {
       // Logic to handle form submission
       try {
-        // build content
-//         this.emailForm.content = `
-// Production: ${this.form.production}
-// Performance: ${this.form.performance}
-// Date: ${this.form.date}
-// House Size: ${this.form.houseSize}
-// Bar Cash Takings: ${this.form.barCash}
-// Bar EFTPOS Takings: ${this.form.barEFTPOS}
-// Box Office Cash Takings: ${this.form.boxOfficeCash}
-// Box Office EFTPOS Takings: ${this.form.boxOfficeEFTPOS}
-// Box Office Credit Card Takings: ${this.form.boxOfficeCreditCard}
-// Box Office Cheque Takings: ${this.form.boxOfficeCheque}
-// FOH Manager: ${this.form.FOHManager}
-// Stage Manager: ${this.form.StageManager}
-// Operator: ${this.form.Operator}
-// FOH Staff 1: ${this.form.FOHStaff1}
-// FOH Staff 2: ${this.form.FOHStaff2}
-// FOH Staff 3: ${this.form.FOHStaff3}
-// FOH Staff 4: ${this.form.FOHStaff4}
-// FOH Staff 5: ${this.form.FOHStaff5}
-//
-// Performance Times:
-// \t\t\t\tUp\t\t\tDown\t\t\tTotal
-// Act I:\t\t\t\t${this.form.ActIUp}\t\t\t${this.form.ActIDown}\t\t\t${this.form.ActITotal}
-// Interval:\t\t\t${this.form.IntervalUp}\t\t\t${this.form.IntervalDown}\t\t\t${this.form.IntervalTotal}
-// Act II:\t\t\t\t${this.form.ActIIUp}\t\t\t${this.form.ActIIDown}\t\t\t${this.form.ActIITotal}
-// Running Time:\t\t${this.form.RunningTimeUp}\t\t\t${this.form.RunningTimeDown}\t\t\t${this.form.RunningTimeTotal}
-//
-// Technical Notes: ${this.form.TechnicalNotes}
-// Action Required: ${this.form.ActionRequired}
-// Supplies Required: ${this.form.SuppliesRequired}
-// Stage Manager Notes: ${this.form.StageManagerNotes}
-// Fans, Lights, Doors?: ${this.form.FansLightsDoorsCheck}
-// `;
         this.emailForm.content =
             "Production: " + this.form.production + "\n" +
             "Performance: " + this.form.performance + "\n" +
@@ -274,8 +240,8 @@ export default {
             'Content-Type': 'application/json'
           }
         });
-        // 处理响应
-        console.log(response.data); // 可根据需要处理数据
+        // response
+        console.log(response.data);
         console.log("Sending data:", this.formData);
         alert('Email sent successfully!');
       } catch (error) {
@@ -289,37 +255,37 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  font-size: 18px; /* 调整整体字体大小 */
+  font-size: 18px;
 
   input[type="text"], input[type="date"], button {
-    font-size: 16px; /* 调整输入框和按钮的字体大小 */
-    padding: 10px; /* 增加填充使输入框更高 */
-    width: 100%; /* 让输入框宽度充满容器 */
-    margin-bottom: 10px; /* 增加底部边距 */
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
   }
 
   label {
-    display: block; /* 使标签独占一行 */
-    margin-bottom: 5px; /* 标签和输入框之间的间隔 */
-    font-weight: bold; /* 加粗标签 */
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
   }
 
   .container {
-    max-width: 800px; /* 设置最大宽度，使内容更集中 */
-    margin: 0 auto; /* 水平居中显示 */
-    padding: 20px; /* 增加内边距 */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
   }
 
   button {
-    background-color: #4CAF50; /* 按钮背景颜色 */
-    color: white; /* 按钮文字颜色 */
-    border: none; /* 去掉边框 */
-    cursor: pointer; /* 鼠标悬停时显示指针 */
-    transition: background-color 0.3s; /* 鼠标悬停时颜色变化的过渡效果 */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
 
   button:hover {
-    background-color: #45a049; /* 按钮悬停时的背景颜色 */
+    background-color: #45a049;
   }
 
   // Up Down form
