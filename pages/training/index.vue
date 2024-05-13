@@ -9,10 +9,10 @@ Fundraising
 
         <div class="content">
           <div class="left">
-            <img :key="item?.image" alt="" style="width: 400px" />
+            <img :src="item?.image" alt="" style="width: 400px" />
           </div>
           <div class="right">
-            <h4>Name of show</h4>
+<!--            <h4>Name of show</h4>-->
             <div>
               {{ item?.contents }}
             </div>
