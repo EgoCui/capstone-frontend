@@ -65,21 +65,23 @@
           ></b-form-input>
         </b-form-group>
         <b-form-group label="image:" label-for="image">
-          <b-form-file
+          <b-form-input
             id="image"
             v-model="form.image"
-            accept="image/*"
-          ></b-form-file>
+            type="text"
+            required
+            placeholder="Enter your image"
+          ></b-form-input>
         </b-form-group>
-        <b-form-group label="Blog:" label-for="blog">
+        <b-form-group label="contents:" label-for="contents">
           <b-form-textarea
-            id="blog"
-            v-model="form.blog"
+            id="contents"
+            v-model="form.contents"
             type=""
             required
             rows="3"
             max-rows="6"
-            placeholder="Enter your blog"
+            placeholder="Enter your contents"
           ></b-form-textarea>
         </b-form-group>
         <p style="text-align: center">
@@ -116,7 +118,7 @@ export default {
         year: "",
         name: "",
         title: "",
-        blog: "",
+        contents: "",
         image: "",
       },
       foods: [
@@ -148,21 +150,40 @@ export default {
       this.form.year = "";
       this.form.name = "";
     },
+    async getPageList() {
+      const res = await this.$axios.get(`/api/page/list`);
+      this.trainingList = res.data.data.filter(
+        (item) => item.pgname == "training"
+      );
+    },
+    handleEdit(item) {
+      this.form.title = item.title;
+      this.form.contents = item.contents;
+      this.form.image = item.image;
+      this.form.pgid = item.pgid;
+      this.editModal = !this.editModal;
+    },
     async onSubmit1(evt) {
       evt.preventDefault();
       console.log(this.form);
-      // const res = await this.$axios.post(`/api/send-mail`, {
-      //   email: this.form.email,
-      //   subject: this.form.subject,
-      //   content: this.form.message,
-      // });
-      // console.log(res);
-      // if (res) {
-      //   this.$bvToast.toast(res.data, {
-      //     title: "提交结果",
-      //     variant: "info",
-      //   });
-      // }
+      const res = await this.$axios.post(
+        `/api/page/mod?adminUid=${this.token.uid}`,
+        {
+          pgid: this.form.pgid,
+          title: this.form.title,
+          contents: this.form.contents,
+          image: this.form.image,
+        }
+      );
+      console.log(res);
+      if (res) {
+        this.getPageList();
+        this.editModal = false;
+        this.$bvToast.toast(res.data.msg, {
+          title: "提交结果",
+          variant: "info",
+        });
+      }
     },
   },
 };

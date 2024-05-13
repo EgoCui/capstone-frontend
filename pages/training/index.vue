@@ -2,37 +2,32 @@ Fundraising
 <template>
   <my-slot class="home">
     <div class="container">
-      <div class="t-con">
+      <div class="t-con" v-for="item in trainingList" :key="item.pgid">
         <div>
-          <h3>Training</h3>
+          <h3>{{ item?.title }}</h3>
         </div>
 
         <div class="content">
           <div class="left">
-            <img
-              src="https://picsum.photos/1024/480/?image=10"
-              alt=""
-              style="width: 400px"
-            />
+            <img :key="item?.image" alt="" style="width: 400px" />
           </div>
           <div class="right">
             <h4>Name of show</h4>
             <div>
-              Synopsis of show taken from first paragraph of post with a click
-              more/expand option
+              {{ item?.contents }}
             </div>
             <p style="float: right; margin-top: 50px">
               <b-button>Apply now</b-button>
               <b-button
                 variant="outline-primary"
                 v-if="token?.roles == 1"
-                @click="editModal = !editModal"
+                @click="handleEdit(item)"
                 >Edit</b-button
               >
             </p>
           </div>
         </div>
-        <div class="content">
+        <!-- <div class="content">
           <div class="left">
             <img
               src="https://picsum.photos/1024/480/?image=10"
@@ -57,7 +52,7 @@ Fundraising
               >
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <b-modal v-model="editModal" centered title="Edit">
@@ -72,21 +67,23 @@ Fundraising
           ></b-form-input>
         </b-form-group>
         <b-form-group label="image:" label-for="image">
-          <b-form-file
+          <b-form-input
             id="image"
             v-model="form.image"
-            accept="image/*"
-          ></b-form-file>
+            type="text"
+            required
+            placeholder="Enter your image"
+          ></b-form-input>
         </b-form-group>
-        <b-form-group label="Blog:" label-for="blog">
+        <b-form-group label="contents:" label-for="contents">
           <b-form-textarea
-            id="blog"
-            v-model="form.blog"
+            id="contents"
+            v-model="form.contents"
             type=""
             required
             rows="3"
             max-rows="6"
-            placeholder="Enter your blog"
+            placeholder="Enter your contents"
           ></b-form-textarea>
         </b-form-group>
         <p style="text-align: center">
@@ -109,9 +106,10 @@ export default {
   },
   data() {
     return {
+      trainingList: [],
       form: {
         title: "",
-        blog: "",
+        contents: "",
         image: "",
       },
       editModal: false,
@@ -123,22 +121,41 @@ export default {
       return this.$store.state.oauth;
     },
   },
+  mounted() {
+    this.getPageList();
+  },
   methods: {
+    async getPageList() {
+      const res = await this.$axios.get(`/api/page/list`);
+      this.trainingList = res.data.data.filter(
+        (item) => item.pgname == "training"
+      );
+    },
+    handleEdit(item) {
+      this.form = item;
+      this.editModal = !this.editModal;
+    },
     async onSubmit1(evt) {
       evt.preventDefault();
       console.log(this.form);
-      // const res = await this.$axios.post(`/api/send-mail`, {
-      //   email: this.form.email,
-      //   subject: this.form.subject,
-      //   content: this.form.message,
-      // });
-      // console.log(res);
-      // if (res) {
-      //   this.$bvToast.toast(res.data, {
-      //     title: "提交结果",
-      //     variant: "info",
-      //   });
-      // }
+      const res = await this.$axios.post(
+        `/api/page/mod?adminUid=${this.token.uid}`,
+        {
+          pgid: this.form.pgid,
+          title: this.form.title,
+          contents: this.form.contents,
+          image: this.form.image,
+        }
+      );
+      console.log(res);
+      if (res) {
+        this.getPageList();
+        this.editModal = false;
+        this.$bvToast.toast(res.data.msg, {
+          title: "提交结果",
+          variant: "info",
+        });
+      }
     },
   },
 };

@@ -48,21 +48,23 @@
             ></b-form-input>
           </b-form-group>
           <b-form-group label="image:" label-for="image">
-            <b-form-file
+            <b-form-input
               id="image"
               v-model="form.image"
-              accept="image/*"
-            ></b-form-file>
+              type="text"
+              required
+              placeholder="Enter your image"
+            ></b-form-input>
           </b-form-group>
-          <b-form-group label="Blog:" label-for="blog">
+          <b-form-group label="contents:" label-for="contents">
             <b-form-textarea
-              id="blog"
-              v-model="form.blog"
+              id="contents"
+              v-model="form.contents"
               type=""
               required
               rows="3"
               max-rows="6"
-              placeholder="Enter your blog"
+              placeholder="Enter your contents"
             ></b-form-textarea>
           </b-form-group>
           <p style="text-align: center">
@@ -77,26 +79,21 @@
       <!-- Publicity/Reviews Section -->
       <div class="t-con publicity-reviews">
         <div class="left">
-          <h3>Publicity/Reviews</h3>
+          <h3>{{ newList[0]?.title }}</h3>
           <p>
-            Static copy to be supplied, manual input with the ability to include
-            hyperlinks
+            {{ newList[0]?.contents }}
           </p>
           <p style="text-align: left">
             <b-button
               variant="outline-primary"
               v-if="token?.roles == 1"
-              @click="editModal = !editModal"
+              @click="handleEdit(newList[0])"
               >Edit</b-button
             >
           </p>
         </div>
         <div class="right">
-          <img
-            src="https://picsum.photos/1024/480/?image=10"
-            alt=""
-            class="responsive-image"
-          />
+          <img :src="newList[0]?.image" alt="" class="responsive-image" />
         </div>
       </div>
 
@@ -149,6 +146,7 @@ export default {
   },
   data() {
     return {
+      newList: [],
       modalShow: false,
       editModal: false,
       form: {
@@ -167,7 +165,21 @@ export default {
       return this.$store.state.oauth;
     },
   },
+  mounted() {
+    this.getPageList();
+  },
   methods: {
+    handleEdit(item) {
+      this.form.title = item.title;
+      this.form.contents = item.contents;
+      this.form.image = item.image;
+      this.form.pgid = item.pgid;
+      this.editModal = !this.editModal;
+    },
+    async getPageList() {
+      const res = await this.$axios.get(`/api/page/list`);
+      this.newList = res.data.data.filter((item) => item.pgname == "News");
+    },
     async onSubmit(evt) {
       evt.preventDefault();
       console.log(this.form);
@@ -186,18 +198,24 @@ export default {
     async onSubmit1(evt) {
       evt.preventDefault();
       console.log(this.form);
-      // const res = await this.$axios.post(`/api/send-mail`, {
-      //   email: this.form.email,
-      //   subject: this.form.subject,
-      //   content: this.form.message,
-      // });
-      // console.log(res);
-      // if (res) {
-      //   this.$bvToast.toast(res.data, {
-      //     title: "提交结果",
-      //     variant: "info",
-      //   });
-      // }
+      const res = await this.$axios.post(
+        `/api/page/mod?adminUid=${this.token.uid}`,
+        {
+          pgid: this.form.pgid,
+          title: this.form.title,
+          contents: this.form.contents,
+          image: this.form.image,
+        }
+      );
+      console.log(res);
+      if (res) {
+        this.getPageList();
+        this.editModal = false;
+        this.$bvToast.toast(res.data.msg, {
+          title: "提交结果",
+          variant: "info",
+        });
+      }
     },
   },
 };
