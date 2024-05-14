@@ -25,7 +25,8 @@
         <b-button type="reset" variant="danger">Reset</b-button>
       </b-form>
       <p></p>
-      <p><b-button @click="addShow">addShow</b-button></p>
+      <p v-if="token && token.roles === 1"><b-button @click="addShow">Add Show</b-button></p>
+
       <b-table striped hover :fields="fields" :items="items">
         <template v-slot:cell(pname)="data">
           <!-- `data.value` is the value after formatted by the Formatter -->
@@ -40,9 +41,11 @@
             >
               Edit
             </b-button>
-            <b-button size="sm" @click="handleDelete(row.item)">
-              Delete
-            </b-button>
+            <hr>
+            <b-button size="sm" class="black-button" @click="handleDelete(row.item)">
+  Delete
+</b-button>
+
           </div>
           <div v-else>-</div>
         </template>
@@ -75,6 +78,7 @@
             type="date"
             required
             placeholder="Enter your startdate"
+            lang="en"
           ></b-form-input>
         </b-form-group>
         <b-form-group label="enddate:" label-for="enddate">
@@ -161,12 +165,7 @@ export default {
   },
   data() {
     return {
-      fields: [
-        { key: "pname", label: "pname" },
-        "subtitle",
-        "startdate",
-        { key: "actions", label: "actions" },
-      ],
+
       items: [
         {
           pid: 1,
@@ -238,10 +237,27 @@ export default {
     this.items = res.data.data;
   },
   computed: {
+    fields() {
+      // Determine if actions should be shown based on user authentication
+      const baseFields = [
+        { key: "pname", label: "Show Name" },
+        { key: "subtitle", label: "Subtitle" },
+        { key: "startdate", label: "Start Date" },
+
+      ];
+      if (this.isAuthenticated) {
+        baseFields.push({ key: "actions", label: "Actions" });
+      }
+      return baseFields;
+    },
     token() {
       // const token = nuxtStorage.localStorage.localStorage.getData("token");
       return this.$store.state.oauth;
     },
+    isAuthenticated() {
+      // Implement this based on how you manage authentication state
+      return !!this.token;
+    }
   },
   methods: {
     async onSubmit(evt) {
@@ -323,7 +339,7 @@ export default {
         });
     },
     addShow() {
-      this.ModalTitle = "add";
+      this.ModalTitle = "Add Show";
       this.editModal = true;
       console.log(this.$options);
       this.form = this.$options.data().form;
@@ -334,5 +350,10 @@ export default {
 
 <style lang="scss" scoped>
 .home {
+}
+.black-button {
+  background-color: rgba(223, 0, 0, 0.911); 
+  color: white; 
+  border-color: rgba(223, 0, 0, 0.991); 
 }
 </style>

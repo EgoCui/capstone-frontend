@@ -58,16 +58,24 @@
       <!-- <b-nav-item @click="modalShow = !modalShow"
         >Login</b-nav-item
       > -->
-      <b-nav-item v-if="!token" @click="modalShow = !modalShow"
-        >Login</b-nav-item
-      >
+      <b-nav-item v-if="!token" @click="modalShow = !modalShow">
+  <img src="@/assets/img/3.png" alt="Login Logo" class="login-logo">
+  Login
+</b-nav-item>
+
       <b-nav-item-dropdown right v-else>
         <!-- Using 'button-content' slot -->
         <template #button-content>
           <em>{{ token.username }}</em>
         </template>
-        <b-dropdown-item @click="handleOut('out')">Sign Out</b-dropdown-item>
-        <b-dropdown-item @click="handleOut('user')">User</b-dropdown-item>
+        <b-dropdown-item @click="handleOut('out')">
+  <img src="@/assets/img/4.png" alt="Sign Out Logo" class="dropdown-logo">
+  Sign Out
+</b-dropdown-item>
+<b-dropdown-item @click="handleOut('user')">
+  <img src="@/assets/img/1.jpg" alt="User Logo" class="dropdown-logo">
+  User
+</b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar>
     <b-modal v-model="modalShow" centered title="Login">
@@ -113,14 +121,14 @@ export default {
       username: "",
       password: "",
       navBarList: [
-        { nav: "home", link: "/", children: [] },
-        { nav: "previous", link: "/previous", children: [] },
-        { nav: "blog", link: "/blog", children: [] },
-        { nav: "fundraising", link: "/fundraising", children: [] },
-        { nav: "about", link: "/about", children: [] },
-        { nav: "work", link: "/work", children: [] },
-        { nav: "training", link: "/training", children: [] },
-        { nav: "news", link: "/news", children: [] },
+        { nav: "Home", link: "/", children: [] },
+        { nav: "Previous Productions", link: "/previous", children: [] },
+        { nav: "Blog", link: "/blog", children: [] },
+        //{ nav: "fundraising", link: "/fundraising", children: [] },
+        { nav: "About", link: "/about", children: [] },
+        //{ nav: "work", link: "/work", children: [] },
+        { nav: "Training", link: "/training", children: [] },
+        { nav: "Newsletter", link: "/news", children: [] },
       ],
     };
   },
@@ -209,6 +217,19 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
+.dropdown-logo {
+  width: 12px; // Reduced size
+  height: 12px; // Maintain aspect ratio
+  margin-right: 3px; // Reduced spacing
+  vertical-align: middle; // Ensure alignment with text
+}
+
+.login-logo {
+  width: 20px; // Adjust size as needed
+  height: 20px; // Adjust height as needed
+  margin-right: 5px; // Space between logo and text
+  vertical-align: middle; // Align the image vertically with the text
+}
 
 #header {
   position: fixed;
@@ -223,6 +244,18 @@ export default {
   border-color: transparent;
   background: none;
 }
+::v-deep .nav-link:hover {
+  transform: scale(1.2); // Scales up the font size by 20% on hover
+
+  transition: transform 0.3s ease; // Smooth transition for the transform property
+}
+@media (hover: hover) {
+  ::v-deep .nav-link:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+  }
+}
+
 ::v-deep.nav-link:hover,
 ::v-deep.dropdown-item:hover,
 ::v-deep .navbar-nav .nav-link.active {

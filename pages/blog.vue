@@ -14,45 +14,38 @@
           width="100px"
         ></b-calendar>
       </b-modal>
-      <div style="margin-top: 20px">
-        <b-card
-          no-body
-          class="overflow-hidden"
-          style="width: 100%; margin-top: 20px"
-          v-for="item in 3"
-          :key="item"
-        >
-          <b-row no-gutters>
-            <b-col md="6">
-              <b-card-img
-                src="https://picsum.photos/200/200/?image=20"
-                alt="Image"
-                class="rounded-0"
-                style="width: 400px; height: 200px"
-              ></b-card-img>
-            </b-col>
-            <b-col md="6">
-              <b-card-body title="Name of show">
-                <b-card-text>
-                  <p>Excerpt goes here</p>
-                  Synopsis of show taken from first paragraph of post with a
-                  click more/expand option
-                </b-card-text>
-
-                <b-button
-                  variant="outline-primary"
-                  v-if="token?.roles == 1"
-                  @click="editModal = !editModal"
-                  >Edit</b-button
-                >
-
-                <b-button href="#" variant="primary">Book Now</b-button>
-              </b-card-body>
-            </b-col>
-          </b-row>
-        </b-card>
-      </div>
     </div>
+  <b-card
+    no-body
+    class="overflow-hidden"
+    style="width: 100%; margin-top: 20px"
+    v-for="item in items"
+    :key="item.id"
+  >
+    <b-row no-gutters>
+      <b-col md="6">
+        <b-card-img
+          :src="item.image"
+          alt="Image"
+          class="rounded-0"
+          style="width: 200px; height: 400px"
+        ></b-card-img>
+      </b-col>
+      <b-col md="6">
+        <b-card-body >
+          <b-card-text>
+            <a :href="item.url" target="_blank" style="color: inherit; text-decoration: none;">
+            <h2>{{ item.title }}</h2> 
+          </a>
+            <p>{{ item.date }}</p>
+          </b-card-text>
+          <b-button href="https://ticketsearch.queue-fair.net/augenricqueue?target=https%3A%2F%2Fgenesian.sales.ticketsearch.com%2Fsales%2Fsalesevent%2F117362&qfuid=66365539" variant="primary">Book Now</b-button>
+        </b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
+</div>
+
     <b-modal v-model="editModal" centered title="Edit">
       <b-form @submit="onSubmit1">
         <b-form-group label="Title:" label-for="title">
@@ -104,15 +97,48 @@ export default {
   },
   data() {
     return {
+      
       modalShow: false,
       editModal: false,
       value: "",
       context: null,
       items: [
-        { year: "2021", link: "" },
-        { year: "2022", link: "" },
-        { year: "2023", link: "" },
-        { year: "2024", link: "" },
+      {
+        id: 1,
+        image: "https://www.genesiantheatre.com.au/s2024/4/images/poster.jpg",
+        title: "Love Letters",
+        date: "13th Jan to 28th Jan",
+        url: "http://localhost:3000/previous/1"
+      },
+      {
+        id: 2,
+        image: "https://www.genesiantheatre.com.au/s2024/2/images/poster.jpg",
+        title: "Plaza Suite",
+        date: "3rd Feb to 2nd Mar",
+        url: "http://localhost:3000/previous/2"
+      },
+      {
+        id: 3,
+        image: "https://www.genesiantheatre.com.au/s2024/3/images/poster.jpg",
+        title: "Strangers on a Train",
+        date: "16th Mar to 20th Apr",
+        url: "http://localhost:3000/previous/3"
+      },
+      {
+        id: 4,
+        image: "https://www.genesiantheatre.com.au/s2024/4/images/poster.jpg",
+        title: "Let's Kill Agatha Christie",
+        date: "4th May to 8th Jun",
+        url: "http://localhost:3000/previous/4"
+      },
+      {
+        id: 5,
+        image: "https://www.genesiantheatre.com.au/s2024/5/images/poster.jpg",
+        title: "Hay Fever",
+        date: "22nd Jun to 27th Jul",
+        url: "http://localhost:3000/previous/89"
+      },
+  
       ],
       form: {
         year: "",

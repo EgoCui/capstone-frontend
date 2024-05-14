@@ -2,31 +2,33 @@ Fundraising
 <template>
   <my-slot class="home">
     <div class="container">
-      <div class="t-con" v-for="item in trainingList" :key="item.pgid">
-        <div>
-          <h3>{{ item?.title }}</h3>
-        </div>
+  <div class="t-con">
+    <div>
+      <h3>{{ trainingItem.title }}</h3>
+    </div>
 
-        <div class="content">
-          <div class="left">
-            <img :key="item?.image" alt="" style="width: 400px" />
-          </div>
-          <div class="right">
-            <h4>Name of show</h4>
-            <div>
-              {{ item?.contents }}
-            </div>
-            <p style="float: right; margin-top: 50px">
-              <b-button>Apply now</b-button>
-              <b-button
-                variant="outline-primary"
-                v-if="token?.roles == 1"
-                @click="handleEdit(item)"
-                >Edit</b-button
-              >
-            </p>
-          </div>
+    <div class="content">
+      <div class="left">
+        <img :src="trainingItem.image" alt="" style="width: 400px" />
+      </div>
+      <div class="right">
+        
+        <div>
+          <div v-html="trainingItem.contents"></div>
         </div>
+        <p style="float: right; margin-top: 50px">
+          
+          <b-button
+            variant="outline-primary"
+            v-if="token?.roles == 1"
+            @click="handleEdit(trainingItem)"
+          >Edit</b-button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
         <!-- <div class="content">
           <div class="left">
             <img
@@ -53,8 +55,6 @@ Fundraising
             </p>
           </div>
         </div> -->
-      </div>
-    </div>
     <b-modal v-model="editModal" centered title="Edit">
       <b-form @submit="onSubmit1">
         <b-form-group label="Title:" label-for="title">
@@ -106,7 +106,13 @@ export default {
   },
   data() {
     return {
-      trainingList: [],
+      trainingItem: {
+      title: "Previous Class",
+      contents: "American Accents with Benjamin Purser <br> Audition Masterclass with Walter Grkovic <br> British Accents with Benjamin Purser <br> American Accents with Natasha McNamara<br>Acting and Auditioning for TV & Film - tutor Sarah Chadwick<br>Shavian Monologues with Kevin Jackson<br>Monroe Riemers<br>Lyn Pierse<br>Direct, to the Point - tutor Roger Gimblett<br>American Acting & Accents - tutor Professor John Higgins<br>Stand Up - tutor Rob McHugh<br>The Viewpoints Method - tutor Samantha Chester<br>New Inspirations - tutor Kevin Jackson<br>Being True - tutor Walter Grkovic<br>Voice and Speech in the Theatre - tutor Monroe Reimers",
+
+      image: "https://www.genesiantheatre.com.au/images/banner/271.jpg",
+    },
+      
       form: {
         title: "",
         contents: "",
@@ -163,9 +169,8 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  .t-con {
-    margin-top: 20px;
-  }
+
+
   .content {
     display: flex;
     justify-content: space-between;

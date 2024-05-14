@@ -5,14 +5,14 @@
         <p><b>Start Date:</b> {{ detail.startdate }}</p>
         <p><b>End Date:</b> {{ detail.enddate }}</p>
         <div v-if="detail.cover" style="float: right">
-          <img :src="detail.cover" alt="Cover Image" />
+          <img :src="detail.cover" alt="Cover Image"/>
         </div>
       </b-card-text>
     </b-card>
 
     <b-card title="Production Team">
       <b-card-text>
-        <p>{{ detail.productions }}</p>
+        <p>{{ parsePCC(detail.productions) }}</p>
       </b-card-text>
 
       <!-- <b-card-text>A second paragraph of text in the card.</b-card-text>
@@ -23,8 +23,8 @@
 
     <b-card title="Cast & Crew">
       <b-card-text>
-        <p>{{ detail.casts }}</p>
-        <p>{{ detail.crews }}</p>
+        <p>{{ parsePCC(detail.casts) }}</p>
+        <p>{{ parsePCC(detail.crews) }}</p>
       </b-card-text>
     </b-card>
     <b-card title="Contents">
@@ -38,8 +38,8 @@
       <b-link href="#" class="card-link">Another link</b-link> -->
     </b-card>
     <b-card title="Stills">
-      <b-card-text>
-        <a :href="detail.still">{{ detail.stills }}</a>
+      <b-card-text v-for="still in parseStills(detail.stills)">
+        <img :src="still" alt="Still Image"/>
       </b-card-text>
     </b-card>
     <h2></h2>
@@ -48,6 +48,7 @@
 
 <script>
 import MySlot from "@/components/slot/index";
+
 export default {
   components: {
     MySlot,
@@ -80,7 +81,7 @@ export default {
           "Stunt Coordinator": ["Person L", "Person M"],
         },
         contents:
-          "It is 1920s London and Cecily & Mavis have just won the sweepstakes! Suddenly, a mysterious stranger appears on their doorstep - the enigmatic American Bruce Lovell!\\nBut as Cecily embarks on a whirlwind romance with Bruce the cracks in his demeanour appear. Tensions rise as Cecily's friends & family uncover disturbing clues about his past.\\nWill Cecily escape the vile clutches of her newly wedded husband? Who will survive to tell the tale?",
+            "It is 1920s London and Cecily & Mavis have just won the sweepstakes! Suddenly, a mysterious stranger appears on their doorstep - the enigmatic American Bruce Lovell!\\nBut as Cecily embarks on a whirlwind romance with Bruce the cracks in his demeanour appear. Tensions rise as Cecily's friends & family uncover disturbing clues about his past.\\nWill Cecily escape the vile clutches of her newly wedded husband? Who will survive to tell the tale?",
         cover: "cover://url",
         stills: ["stills", "url", "list"],
       },
@@ -95,9 +96,35 @@ export default {
   },
   async mounted() {
     const res = await this.$axios.get(
-      `/api/show/detail/${this.$route.params.id}`
+        `/api/show/detail/${this.$route.params.id}`
     );
     this.detail = res.data.data;
+  },
+  methods: {
+    parseJSON(jsonString) {
+      try {
+        const jsonObj = JSON.parse(jsonString);
+        return jsonObj;
+      } catch (error) {
+        console.log('error', error.message)
+        return null;
+      }
+    },
+    parsePCC(jsonString) {
+      const parsedJson = this.parseJSON(jsonString);
+      if (parsedJson) {
+        const output = Object.entries(parsedJson).map(([key, value]) => {
+          return `${key}: ${value.join(', ')}`;
+        }).join(' ; ');
+        return output;
+      }
+    },
+    parseStills(String) {
+      const parsedJson = eval(String);
+      if (parsedJson) {
+        return parsedJson;
+      }
+    },
   },
 };
 </script>

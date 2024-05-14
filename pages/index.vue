@@ -44,10 +44,10 @@
       </div>
     </div>
     <div class="t-con">
+      <hr>
       <h3>Reviews</h3>
       <p>
-        Pull quote style paragraph section, automatically scrolling through (max
-        4 entries)
+       
       </p>
       <div class="card-scroll">
         <b-card class="mb-3">
@@ -104,18 +104,14 @@
           </p>
 
           <div>
-            <router-link to="/fundraising" class="nav-link"
-              >learn more</router-link
-            >
+            <router-link to="/fundraising" class="nav-link">Learn more</router-link>
           </div>
           <p style="text-align: left">
             <!-- Add CSS here -->
-            <a
-              href="https://donorbox.org/gtc-fundraising-campaign"
-              target="_blank"
-            >
-              <b-button>Donate</b-button>
-            </a>
+            <a href="https://genesian.sales.ticketsearch.com/sales/salesdonation/452" target="_blank">
+  <b-button style="background-color: yellow; color: red;">Donate</b-button>
+</a>
+
             <b-button
               variant="outline-primary"
               v-if="token?.roles == 1"
@@ -316,6 +312,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.yellow-button {
+  background-color: yellow; // 设置背景色为黄色
+  color: red;
+  border-color: yellow; 
+}
+
 .home {
   .t-con {
     margin-bottom: 20px;

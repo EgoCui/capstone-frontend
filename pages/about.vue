@@ -6,20 +6,21 @@ Fundraising
         <b-card no-body class="overflow-hidden">
           <b-row no-gutters>
             <b-col md="4">
-              <!-- <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.8912195377397!2d151.17041551289088!3d-33.866694218840856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12afc5980ed26f%3A0x2b7571f3fc43888d!2sSt%20Joseph&#39;s%20Catholic%20Church!5e0!3m2!1szh-CN!2shk!4v1712808109697!5m2!1szh-CN!2shk"
+              <iframe
+                :src="aboutList[0]?.image"
                 width="100%"
                 height="400px"
                 style="border: 0"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-              ></iframe> -->
-              <b-card-img
+              ></iframe>
+              <!-- <b-card-img
                 :src="aboutList[0]?.image"
                 alt="Image"
                 class="rounded-0"
-              ></b-card-img>
+              ></b-card-img> -->
+              
             </b-col>
             <b-col md="8">
               <b-card-body :title="aboutList[0]?.title">
@@ -193,7 +194,11 @@ Fundraising
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
                   </div>
-
+                  <br>
+                  <br>
+<!-- Add CSS here -->
+<a href="https://genesian.sales.ticketsearch.com/sales/salesdonation/452" target="_blank">
+  <b-button style="background-color: yellow; color: red;">Donate</b-button></a>
                   <p style="text-align: right">
                     <b-button
                       variant="outline-primary"
@@ -201,19 +206,15 @@ Fundraising
                       @click="handleEdit(aboutList[0])"
                       >Edit</b-button
                     >
-                    <!-- Add CSS here -->
-                    <a
-                      href="https://donorbox.org/gtc-fundraising-campaign"
-                      target="_blank"
-                    >
-                      <b-button>Donate</b-button>
-                    </a>
                   </p>
+
                 </b-card-text>
+                
               </b-card-body>
             </b-col>
           </b-row>
         </b-card>
+        
       </div>
       <div class="t-con">
         <b-card no-body class="overflow-hidden">
@@ -260,22 +261,27 @@ Fundraising
                 <b-card-text>
                   <div>
                     {{ aboutList[2]?.contents }}
-                    <a href="https://en.wikipedia.org/wiki/Genesius_of_Rome"
-                      >St Genesius</a
-                    >
+                    <br>
+                    <br>
+                    
+
                   </div>
-                  <div>
-                    <!-- 使用router-link来创建导航链接 -->
-                    <router-link to="/previous" class="nav-link"
-                      >Previous Productions</router-link
-                    >
-                  </div>
+                  <div class="container">
+  <div class="text-container">
+    <span>Learn more about the history of <a href="https://en.wikipedia.org/wiki/Genesius_of_Rome">St Genesius</a>.</span>
+  </div>
+  <div class="link-container">
+    <router-link to="/previous" class="nav-link">Previous Productions</router-link>
+  </div>
+</div>
+
 
                   <br />
                   <div>
                     Please click the button and fill out the form to contact
                     Theatre historian and archivist Grant.
                   </div>
+                  <br>
 
                   <!-- 添加按钮触发模态框 -->
                   <button
@@ -365,7 +371,7 @@ Fundraising
                   <div>
                     {{ aboutList[3]?.contents }}
                   </div>
-
+                  <br>
                   <!-- 添加按钮触发模态框 -->
                   <button
                     type="button"

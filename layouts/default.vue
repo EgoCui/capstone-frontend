@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%">
+  <div class="content">
     <my-header />
     <div style="margin-bottom: 70px"></div>
     <nuxt />
@@ -60,5 +60,10 @@ html {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+.content {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("");
 }
 </style>

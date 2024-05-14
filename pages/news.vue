@@ -1,7 +1,7 @@
 <template>
   <my-slot class="home">
     <div class="container">
-      <b-button block @click.stop="modalShow = !modalShow">Subscribe</b-button>
+      <b-button block @click.stop="modalShow = !modalShow">Subscribe to our Newsletter</b-button>
       <!-- Newsletter Section -->
       <b-modal v-model="modalShow" centered title="Subscribe to our Newsletter">
         <p>
