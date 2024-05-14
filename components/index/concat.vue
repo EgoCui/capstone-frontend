@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -99,59 +100,38 @@ export default {
         message: "",
         selected: null,
       },
+      formData: {
+        email: '',
+        subject: '',
+        content: ''
+      },
       modalShow: false,
 
       options: [
-        { value: null, text: "Please select an option" },
-        { value: "a", text: "This is First option" },
-        { value: "b", text: "Selected Option" },
-        { value: { C: "3PO" }, text: "This is an option with object value" },
-        { value: "d", text: "This one is disabled", disabled: true },
+        { value: "Membership", text: "Contact for Membership" },
+        { value: "Front desk", text: "Contact our front desk" },
       ],
     };
   },
   methods: {
     async onSubmit(evt) {
       evt.preventDefault();
-      const phoneReg = /^1[3456789]\d{9}$/;
-      const emailReg =
-        /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
-      if (!phoneReg.test(this.form.phone) && !emailReg.test(this.form.phone)) {
-        this.$bvToast.toast(`提交失败，请输入正确的手机号或邮箱号`, {
-          title: "提交结果",
-          variant: "danger",
-          autoHideDelay: 5000,
+      try {
+        this.formData.email = this.form.phone;
+        this.formData.subject = this.form.selected;
+        this.formData.content = "My name is: " + this.form.name + this.form.message;
+        const response = await axios.post('http://localhost:8090/send-mail', this.formData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
-        return;
-      }
-      const res = await this.$axios.post(`/sendmail`, {
-        type: "留言",
-        html: `
-          <p><strong>发信人姓名：</strong></p>
-          <p>${this.form.name}</p>
-          <p><strong>发信人联系方式：</strong></p>
-          <p>${this.form.phone}</p>
-          <p><strong>发信人留言：</strong></p>
-          <p>${this.form.message}</p>
-        `,
-      });
-      if (res.data.error_code === 200) {
-        this.form = {
-          name: "",
-          phone: "",
-          message: "",
-        };
-        this.$bvToast.toast(`提交成功，我们将尽快与您取得联系！`, {
-          title: "提交结果",
-          variant: "success",
-          autoHideDelay: 5000,
-        });
-      } else {
-        this.$bvToast.toast(`提交失败，请稍后重试！`, {
-          title: "提交结果",
-          variant: "danger",
-          autoHideDelay: 5000,
-        });
+
+        console.log(response.data);
+        console.log("Sending data:", this.formData);
+        alert('Email sent successfully!');
+      } catch (error) {
+        console.error('Mail send failed:', error);
+        alert('Mail send failed!');
       }
     },
   },

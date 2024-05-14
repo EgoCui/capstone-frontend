@@ -483,6 +483,7 @@ Fundraising
 
 <script>
 import MySlot from "@/components/slot/index";
+import axios from "axios";
 export default {
   components: {
     MySlot,
@@ -501,6 +502,11 @@ export default {
         title: "",
         contents: "",
         image: "",
+      },
+      formData: {
+        email: '',
+        subject: '',
+        content: ''
       },
     };
   },
@@ -529,17 +535,21 @@ export default {
     },
     async onSubmit(evt) {
       evt.preventDefault();
-      const res = await this.$axios.post(`/api/send-mail`, {
-        email: this.form.email,
-        subject: this.form.subject,
-        content: this.form.message,
-      });
-      console.log(res);
-      if (res) {
-        this.$bvToast.toast(res.data, {
-          title: "提交结果",
-          variant: "info",
+      try {
+        this.formData.email = this.form.email;
+        this.formData.subject = this.form.subject;
+        this.formData.content = "My name is: " + this.form.name + this.form.contents;
+        const response = await axios.post('http://localhost:8090/send-mail', this.formData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
+        console.log(response.data);
+        console.log("Sending data:", this.formData);
+        alert('Email sent successfully!');
+      } catch (error) {
+        console.error('Mail send failed:', error);
+        alert('Mail send failed!');
       }
     },
     async onSubmit1(evt) {
