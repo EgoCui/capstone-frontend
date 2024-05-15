@@ -76,6 +76,7 @@
   <img src="@/assets/img/1.jpg" alt="User Logo" class="dropdown-logo">
   User
 </b-dropdown-item>
+        <b-dropdown-item @click="handleOut('manager')">Manager</b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar>
     <b-modal v-model="modalShow" centered title="Login">
@@ -165,8 +166,10 @@ export default {
         this.$cookies.remove("oauth");
         this.$store.commit("setOauth", "");
         this.$router.push("/");
-      } else {
+      } else if(evt === "user"){
         this.$router.push("/user");
+      }else if (evt === "manager") {
+        this.$router.push("/manager");
       }
     },
     handleShowDrop(bvEvt) {
@@ -311,7 +314,7 @@ export default {
 }
 ::v-deep .navbar {
   // background: transparent !important;
-  background-color: #333;
+  background-color: #880a0c;
   transition: 0.3s;
   &.active {
     background: #fff !important;
@@ -327,7 +330,7 @@ export default {
     }
     .navbar-toggler {
       .navbar-toggler-icon {
-        background: #333;
+        background: #b84343;
         &:after,
         &:before {
           background: #333;

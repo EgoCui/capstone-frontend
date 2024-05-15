@@ -15,9 +15,9 @@
             <b-carousel-slide :img-src="item.image"></b-carousel-slide>
           </b-carousel>
         </div>
-        <div class="right">
+        <div class="right" style="margin-left: 50px">
           <h3>
-            <router-link to="/previous/4" class="nav-link">{{
+            <router-link to="/previous/4" class="nav-link" style="margin-left: -30px">{{
               item.title
             }}</router-link>
           </h3>
@@ -26,7 +26,7 @@
           <div>
             {{ item.contents }}
           </div>
-          <p style="float: right; margin-top: 50px">
+          <p style="float: right; margin-top: 50px; ">
             <b-button
               href="https://genesian.sales.ticketsearch.com/sales/salesevent/118719"
               target="_blank"
@@ -58,9 +58,9 @@
               {{ item }}
             </li>
           </b-card-text>
-          <b-button variant="outline-info" class="d-block ml-auto"
-            >Learn More</b-button
-          >
+<!--          <b-button variant="outline-info" class="d-block ml-auto"-->
+<!--            >Learn More</b-button-->
+<!--          >-->
 
           <b-button
             style="float: right; margin-top: 50px"
@@ -221,29 +221,30 @@ export default {
             "Let's Kill Agatha Christie:	4th May to 8th Jun",
           ],
         },
-        {
-          id: 2,
-          icon: require("~/static/img/product/product02.jpg"),
-          title: "Season 2025",
-          desc: [
-            "Love Letters :13th Jan to 28th Jan",
-            "Plaza Suite: 3rd Feb to 2nd Mar",
-            "Strangers on a Train: 16th Mar to 20th Apr",
-            "Let's Kill Agatha Christie:	4th May to 8th Jun",
-          ],
-        },
-        {
-          id: 3,
-          icon: require("~/static/img/product/product03.jpg"),
-          title: "Season 2026",
-          desc: ["Love Letters :13th Jan to 28th Jan"],
-        },
-        {
-          id: 4,
-          icon: require("~/static/img/product/product04.jpg"),
-          title: "Season 2027",
-          desc: ["Love Letters :13th Jan to 28th Jan"],
-        },
+        // {
+        //   id: 2,
+        //   icon: require("~/static/img/product/product02.jpg"),
+        //   title: "Season 2025",
+        //   desc: [
+        //     "Love Letters :13th Jan to 28th Jan",
+        //     "Plaza Suite: 3rd Feb to 2nd Mar",
+        //     "Strangers on a Train: 16th Mar to 20th Apr",
+        //     "Let's Kill Agatha Christie:	4th May to 8th Jun",
+        //   ],
+        // },
+        // {
+        //   id: 3,
+        //   icon: require("~/static/img/product/product03.jpg"),
+        //   title: "Season 2026",
+        //   desc: ["Love Letters :13th Jan to 28th Jan" +
+        //   "Very beautiful opera, unforgettable!"],
+        // },
+        // {
+        //   id: 4,
+        //   icon: require("~/static/img/product/product04.jpg"),
+        //   title: "Season 2027",
+        //   desc: ["Love Letters :13th Jan to 28th Jan"],
+        // },
       ],
       modalShow: false,
       randomItem: {},
@@ -284,7 +285,7 @@ export default {
         this.getPageList();
         this.editModal = false;
         this.$bvToast.toast(res.data.msg, {
-          title: "提交结果",
+          title: "Submit result",
           variant: "info",
         });
       }
@@ -313,9 +314,9 @@ export default {
 
 <style lang="scss" scoped>
 .yellow-button {
-  background-color: yellow; // 设置背景色为黄色
-  color: red;
-  border-color: yellow; 
+  background-color: #fdae37; // 设置背景色为黄色
+  color: #880a0c;
+  border-color: #fdae37;
 }
 
 .home {
