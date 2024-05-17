@@ -58,11 +58,7 @@ export default {
       detail: {
         pid: 1,
         pname: "Love From a Stranger",
-        subtitle: [
-          "By Agatha Christie",
-          "Adapted by Frank Vosper",
-          "Directed by Tui Clark",
-        ],
+        subtitle: "By Agatha Christie",
         startdate: "2023-01-14",
         enddate: "2023-01-30",
         productions: {
