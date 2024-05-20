@@ -177,7 +177,7 @@ export default {
       this.form.name = "";
     },
     async getPageList() {
-      const res = await this.$axios.get(`/api/page/list`);
+      const res = await this.$axios.get(`/page/list`);
       this.trainingList = res.data.data.filter(
         (item) => item.pgname == "training"
       );
@@ -193,7 +193,7 @@ export default {
       evt.preventDefault();
       console.log(this.form);
       const res = await this.$axios.post(
-        `/api/page/mod?adminUid=${this.token.uid}`,
+        `/page/mod?adminUid=${this.token.uid}`,
         {
           pgid: this.form.pgid,
           title: this.form.title,

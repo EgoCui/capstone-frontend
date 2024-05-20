@@ -228,7 +228,7 @@ export default {
   },
   async mounted() {
     // this.onSubmit();
-    const res = await this.$axios.get(`/api/show/fSearch`, {
+    const res = await this.$axios.get(`/show/fSearch`, {
       params: {
         kw: this.form.name,
         year: this.form.year,
@@ -263,7 +263,7 @@ export default {
     async onSubmit(evt) {
       evt?.preventDefault();
       console.log(this.form);
-      const res = await this.$axios.get(`/api/show/fSearch`, {
+      const res = await this.$axios.get(`/show/fSearch`, {
         params: {
           kw: this.form.name,
           year: this.form.year,
@@ -284,12 +284,12 @@ export default {
       console.log(this.form);
       if (this.ModalTitle == "edit") {
         await this.$axios.post(
-          `/api/show/mod?uid=${this.token.uid}`,
+          `/show/mod?uid=${this.token.uid}`,
           this.form
         );
       } else {
         await this.$axios.post(
-          `/api/show/save?uid=${this.token.uid}`,
+          `/show/save?uid=${this.token.uid}`,
           this.form
         );
       }
@@ -299,7 +299,7 @@ export default {
     },
     info(item, index, button) {
       console.log(item, "--onSubmit");
-      this.$axios.get(`/api/show/detail/${item.pid}`).then((res) => {
+      this.$axios.get(`/show/detail/${item.pid}`).then((res) => {
         this.form = { ...res.data.data };
         this.active = res.data.data;
         this.ModalTitle = "edit";
@@ -324,7 +324,7 @@ export default {
         .then(async (value) => {
           console.log(this.token);
           if (value) {
-            const res = await this.$axios.get(`/api/show/delete`, {
+            const res = await this.$axios.get(`/show/delete`, {
               params: {
                 pid: row.pid,
                 uid: this.token.uid,

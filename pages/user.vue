@@ -185,7 +185,7 @@ export default {
       const { username, pwd, firstname, lastname, email, roles } =
         this.userform;
       const res = await this.$axios.post(
-        `/api/user/save?uid=${this.token.uid}`,
+        `/user/save?uid=${this.token.uid}`,
         {
           username,
           pwd,
@@ -202,7 +202,7 @@ export default {
       this.isBusy = !this.isBusy;
     },
     async getUserList() {
-      const res = await this.$axios.get(`/api/user/list`);
+      const res = await this.$axios.get(`/user/list`);
       console.log(res.data.data);
       this.items = res.data.data;
     },
@@ -226,7 +226,7 @@ export default {
         })
         .then(async (value) => {
           if (value) {
-            const res = await this.$axios.get(`/api/user/delete`, {
+            const res = await this.$axios.get(`/user/delete`, {
               params: {
                 uid: row.item.uid,
                 adminUid: this.token.uid,

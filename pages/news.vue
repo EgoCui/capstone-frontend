@@ -177,13 +177,13 @@ export default {
       this.editModal = !this.editModal;
     },
     async getPageList() {
-      const res = await this.$axios.get(`/api/page/list`);
+      const res = await this.$axios.get(`/page/list`);
       this.newList = res.data.data.filter((item) => item.pgname == "News");
     },
     async onSubmit(evt) {
       evt.preventDefault();
       console.log(this.form);
-      const res = await this.$axios.post(`/api/send-mail`, {
+      const res = await this.$axios.post(`http://localhost:8090/send-mail`, {
         email: this.form.email,
         // subject: this.form.subject,
         content: this.form.address,
@@ -199,7 +199,7 @@ export default {
       evt.preventDefault();
       console.log(this.form);
       const res = await this.$axios.post(
-        `/api/page/mod?adminUid=${this.token.uid}`,
+        `/page/mod?adminUid=${this.token.uid}`,
         {
           pgid: this.form.pgid,
           title: this.form.title,

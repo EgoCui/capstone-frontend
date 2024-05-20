@@ -75,7 +75,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:8090/'
+  },
   /*
    ** Build configuration
    */
@@ -85,16 +87,16 @@ module.exports = {
   render: {
     resourceHints: false,
   },
-  proxy: {
-    "/api": {
-      target: "http://localhost:8090/",
-      pathRewrite: {
-        "^/api": "",
-      },
-      secure: false,
-      changeOrigin: true,
-    },
-  },
+  // proxy: {
+  //   "/api": {
+  //     target: "http://localhost:8090/",
+  //     pathRewrite: {
+  //       "^/api": "",
+  //     },
+  //     secure: false,
+  //     changeOrigin: true,
+  //   },
+  // },
   build: {
     /*
      ** You can extend webpack config here
