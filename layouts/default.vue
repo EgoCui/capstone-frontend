@@ -43,7 +43,7 @@ html {
     FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB",
     "Hiragino Sans GB W3", Roboto, Arial, sans-serif;
   font-size: 14px;
-  color: #333;
+  color: #444343;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
