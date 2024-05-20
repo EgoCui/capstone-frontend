@@ -92,7 +92,7 @@ export default {
   },
   async mounted() {
     const res = await this.$axios.get(
-        `/api/show/detail/${this.$route.params.id}`
+        `/show/detail/${this.$route.params.id}`
     );
     this.detail = res.data.data;
   },

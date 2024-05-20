@@ -195,7 +195,7 @@ export default {
     async login(evt) {
       evt.preventDefault();
       // Here you can add your login logic
-      const res = await this.$axios.post(`/api/user/login`, {
+      const res = await this.$axios.post(`/user/login`, {
         email: this.username,
         pwd: this.password,
       });

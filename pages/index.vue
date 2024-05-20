@@ -274,7 +274,7 @@ export default {
       evt.preventDefault();
       console.log(this.form);
       const res = await this.$axios.post(
-        `/api/page/mod?adminUid=${this.token.uid}`,
+        `/page/mod?adminUid=${this.token.uid}`,
         {
           ...this.form,
           pgname: undefined,
@@ -296,7 +296,7 @@ export default {
       this.editModal = !this.editModal;
     },
     async getPageList() {
-      const res = await this.$axios.get(`/api/page/list`);
+      const res = await this.$axios.get(`/page/list`);
       this.stage = res.data.data.filter(
         (item) => item.pgname == "home/On stage now"
       );
