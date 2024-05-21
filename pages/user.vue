@@ -10,8 +10,8 @@ Fundraising
       class="mt-3"
       outlined
     >
-      <template #cell(index)="data">
-        {{ data.index + 1 }}
+      <template #cell(role)="data">
+       {{ getRoleName(data.item.roles)}}
       </template>
       <template #table-busy>
         <div class="text-center text-danger my-2">
@@ -143,12 +143,14 @@ export default {
       },
       isBusy: false,
       fields: [
-        "index",
-        "username",
-        "email",
-        { key: "actions", label: "Actions" },
-      ],
-      items: [{ first_name: "Dickerson", last_name: "MacDonald", age: 40 }],
+  { key: 'role', label: 'Role' },
+  'username',
+  'email',
+  { key: 'actions', label: 'Actions' }
+],
+      items: [ { role: "1", username: "admin", email: "admin@example.com" },
+        { role: "2", username: "marketing", email: "marketing@example.com" },
+        { role: "3", username: "manager", email: "manager@example.com" },],
       userform: {
         username: "",
         pwd: "",
@@ -239,6 +241,15 @@ export default {
           // An error occurred
         });
     },
+    getRoleName(role) {
+    const roleMapping = {
+      '1': 'Administrator',
+      '2': 'Marketing',
+      '3': 'Manager',
+      '4': 'Member'
+    };
+    return roleMapping[role] || 'Unknown';
+  },
   },
 };
 </script>
