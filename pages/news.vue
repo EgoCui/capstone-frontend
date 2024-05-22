@@ -212,7 +212,7 @@ export default {
         this.getPageList();
         this.editModal = false;
         this.$bvToast.toast(res.data.msg, {
-          title: "提交结果",
+          title: "Result",
           variant: "info",
         });
       }
